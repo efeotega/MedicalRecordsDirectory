@@ -1,7 +1,5 @@
 <!DOCTYPE html>
-<!--
-Project by Tanmoy Sen Gupta | tanmoysps@gmail.com | www.tanmoysg.com
--->
+
 <?php
 include 'connection.php';
 session_start();
@@ -10,22 +8,22 @@ if (isset($_SESSION['logged_in'])) {
     $query = "SELECT * FROM users WHERE email ='$email'";
     $result = mysqli_query($db, $query);
     $row = mysqli_fetch_assoc($result);
-    $mln = $row['mln'];
+    $chhid = $row['chhid'];
 
     if (isset($_POST['submit'])) {
-        $sypmtoms = mysqli_real_escape_string($db, $_POST['symptoms']);
-        $diagnosis = mysqli_real_escape_string($db, $_POST['diagnosis']);
-        $date = mysqli_real_escape_string($db, $_POST['date']);
-        $dr = mysqli_real_escape_string($db, $_POST['dr']);
-        $trtmnt = mysqli_real_escape_string($db, $_POST['trtmnt']);
-        $medicines = mysqli_real_escape_string($db, $_POST['medicines']);
+        $fname = mysqli_real_escape_string($db, $_POST['fname']);
+        $lname = mysqli_real_escape_string($db, $_POST['lname']);
+        $email = mysqli_real_escape_string($db, $_POST['email']);
+        $illness = mysqli_real_escape_string($db, $_POST['illness']);
+        $symptoms = mysqli_real_escape_string($db, $_POST['symptoms']);
+        $drugs = mysqli_real_escape_string($db, $_POST['drugs']);
 
-        $query = "INSERT INTO $mln (`symptoms`, `diagnosis`, `date`, `dr`, `trtmnt`, `medicines`) 
+        $query = "INSERT INTO $patientrecords (`fname`, `lname`, `email`, `illness`, `symptoms`, `drugs`) 
   			  VALUES('$sypmtoms' , '$diagnosis', '$date', '$dr', '$trtmnt', '$medicines')";
 
         mysqli_query($db, $query);
 
-        $message = 'Successfully Added for ';
+        $message = 'Successfully Added for '.$fname. $lname;
     }
     ?>
     <html>
@@ -47,10 +45,10 @@ if (isset($_SESSION['logged_in'])) {
                 <div class="dashboard-navbar-options-light nav-title" style="width: 100%;">
                     <center>
                         <span>
-                            <a href="index.php" style="float: left; padding-left: 50px; color: black">Medical Legacy Directory</a>
+                            <a href="index.php" style="float: left; padding-left: 50px; color: black">Central Health Hospital</a>
                         </span>
                         <span style="float: right;">
-                            <a href="userHome.php" style="color:#252525"><i class="fas fa-home"></i></a>  
+                            <a href="patientHome.php" style="color:#252525"><i class="fas fa-home"></i></a>  
                             <a href="logout.php" style="color:#252525"><i class="fas fa-sign-out-alt" ></i></a>
                         </span> 
                     </center>
@@ -61,7 +59,7 @@ if (isset($_SESSION['logged_in'])) {
                     <h1 style="font-size: 50px; "><i class="fas fa-clipboard"></i> ADD RECORDS</h1>
                     <?php
                     if (isset($message)) {
-                        echo "<p><small><i>".$message."<b>".$mln."</b> !</p></small></i>";
+                        echo "<p><small><i>".$message."<b>".$chhid."</b> !</p></small></i>";
                     }
                     ?>
                     <div class="row form-input-group">

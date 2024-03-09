@@ -1,7 +1,5 @@
 <!DOCTYPE html>
-<!--
-Project by Tanmoy Sen Gupta | tanmoysps@gmail.com | www.tanmoysg.com
--->
+
 <!DOCTYPE html>
 <html>
     <head>
@@ -23,10 +21,10 @@ if (isset($_SESSION['logged_in'])) {
     $query = "SELECT * FROM users WHERE email ='$email'";
     $result = mysqli_query($db, $query);
     $row = mysqli_fetch_assoc($result);
-    $mln = $row['mln'];
+    $chhid = $row['chhid'];
     
     if (!empty($_FILES['uploaded_file'])) {
-        $path = $mln . "/";
+        $path = $chhid . "/";
         echo $path;
         $path = $path . basename($_FILES['uploaded_file']['name']);
         if (move_uploaded_file($_FILES['uploaded_file']['tmp_name'], $path)) {

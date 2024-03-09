@@ -1,7 +1,5 @@
 <!DOCTYPE html>
-<!--
-Project by Tanmoy Sen Gupta | tanmoysps@gmail.com | www.tanmoysg.com
--->
+
 <html>
     <head>
         <meta charset="UTF-8">
@@ -21,10 +19,10 @@ Project by Tanmoy Sen Gupta | tanmoysps@gmail.com | www.tanmoysg.com
             <div class="dashboard-navbar-options-light nav-title" style="width: 100%;">
                 <center>
                     <span>
-                        <a href="index.php" style="float: left; padding-left: 50px; color: black">Medical Legacy Directory</a>
+                        <a href="index.php" style="float: left; padding-left: 50px; color: black">Central Health Hospital</a>
                     </span>
                     <span style="float: right;">
-                        <a href="userHome.php" style="color:#252525"><i class="fas fa-home"></i></a>  
+                        <a href="patientHome.php" style="color:#252525"><i class="fas fa-home"></i></a>  
                         <a href="logout.php" style="color:#252525"><i class="fas fa-sign-out-alt" ></i></a>
                     </span> 
                 </center>
@@ -47,10 +45,10 @@ if (isset($_SESSION['logged_in'])) {
     $query = "SELECT * FROM users WHERE email ='$email'";
     $result = mysqli_query($db, $query);
     $row = mysqli_fetch_assoc($result);
-    $mln = $row['mln'];
+    $chhid = $row['chhid'];
 
     if (!empty($_FILES['uploaded_file'])) {
-        $path = $mln . "/";
+        $path = $chhid . "/";
 
         $path = $path . basename($_FILES['uploaded_file']['name']);
         if (move_uploaded_file($_FILES['uploaded_file']['tmp_name'], $path)) {

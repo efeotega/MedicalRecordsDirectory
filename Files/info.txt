@@ -10,7 +10,7 @@ WORKING PROCESS
 
 2. The MLN shall be required at the time when an Individual visits any kind of Medical Facility for a checkup or undergoes any medical procedure.
 
-3.The report for the process will be generated for the Individual and a copy of the same will be sent to the Medical Legacy Directory, where it’ll be stored against the Individual’s MLN.Digital copy of the prescription issued by the doctor, with the medicines and medical tests mentioned shall also be uploaded to the Directory.
+3.The report for the process will be generated for the Individual and a copy of the same will be sent to the Central Health Hospital, where it’ll be stored against the Individual’s MLN.Digital copy of the prescription issued by the doctor, with the medicines and medical tests mentioned shall also be uploaded to the Directory.
 
 4. Whenever the individual goes for a checkup for any new symptoms, the Doctor shall request the Individual's Medical Legacy Data using the Individual’s MLN.
 

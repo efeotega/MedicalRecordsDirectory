@@ -2,7 +2,7 @@
 <html>
     <head>
         <meta charset="UTF-8">
-        <title>Medical Legacy Directory</title>
+        <title>Central Health Hospital</title>
         <link rel="icon" href="favicon.ico" sizes="20x20" type="image/png">  
         <link rel="stylesheet" type="text/css" href="styling/dashboard.css">
         <link rel="stylesheet" type="text/css" href="styling/flexboxgrid.css">
@@ -18,11 +18,11 @@
             <div class="dashboard-navbar-options-light nav-title" style="width: 100%;">
                 <center>
                     <span>
-                        <a href="index.php" style="float: left; padding-left: 50px; color: black">Medical Legacy Directory</a>
+                        <a href="index.php" style="float: left; padding-left: 50px; color: black">Central Health Hospital</a>
                     </span>
-                    <span style="float: right;">
-                        <a href="login.php" style="color:#252525"><i class="fas fa-sign-in-alt"></i></a>  
-                    </span> 
+                   <span style="float: right;">
+                        <a href="login.php" style="color:#252525"><i class="fas fa-sign-in-alt"></i> Log In</a>  
+                    </span>  
                 </center>
             </div>
         </div>
@@ -37,26 +37,26 @@
                             </p>
                             <div style="float: left;" class="row">
                                 <div style="border: solid 1px white; border-radius: 10px; padding: 10px; font-family: Montserrat; margin-right: 10px;"><a href="index.php#KnowMore" style="color: white;">Know More</a></div>
-                                <div style="border: solid 1px white; border-radius: 10px; padding: 10px; font-family: Montserrat; margin-right: 10px;"><a href="login.php" style="color: white;">Sign Up</a> / <a href="register.php" style="color: white;">Sign In</a></div>
+                                <div style="border: solid 1px white; border-radius: 10px; padding: 10px; font-family: Montserrat; margin-right: 10px;"><a href="login.php" style="color: white;">Sign Up</a> / <a href="patientRegister.php" style="color: white;">Sign In</a></div>
                             </div>
                         </div>
                         <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
-                            <img src="illustrations/doctor-colour.svg" alt="doctor" style="width: 25vw; height: 25vw;  display: block;   margin-left: auto;  margin-right: auto;">
+                            <img src="illustrations/doctor-colour.svg" alt="doctor1" style="width: 25vw; height: 25vw;  display: block;   margin-left: auto;  margin-right: auto;">
                         </div> 
                     </div>
                 </div> 
             </div>
         </div>
-        <section id="KnowMore">
+        <section id="KnowMore" >
             <div style="height: 100vh; background: linear-gradient(149deg,  #fdfbfb 0%,#eaedee 100%);">
                 <div class="content-section" style=" transform: translateY(25%)">
                     <div class="row">
                         <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
-                            <img src="illustrations/drawkit-charts-and-graphs.svg" alt="doctor" style="width: 30vw; height: 30vw;  display: block;   margin-left: auto;  margin-right: auto;">
+                            <img src="illustrations/doc.jpg" alt="doctor2" style="width: 30vw; height: 30vw;  display: block;   margin-left: auto;  margin-right: auto;">
                         </div> 
                         <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
                             <div> 
-                                <h1 style="font-family: bebas-neue; font-size: 70px;">What is Medical Legacy Directory ?</h1>
+                                <h1 style="font-family: bebas-neue; font-size: 70px;">What is Central Health Hospital ?</h1>
                                 <p style="font-family: 'Open Sans'; font-size: 30px;">A project to keep track of Medical History of an individual, to be used by Doctors and Medical Personel for better treatment of that individual.</p>
                                 <div style="float: left;" class="row">
                                     <div style="border: solid 1px #1e78ff; border-radius: 10px; padding: 10px; font-family: Montserrat; margin-right: 10px;"><a href="index.php#WhyRequireIt" style="color: #1e78ff ;">Why use the system ?</a></div>
@@ -75,14 +75,14 @@
                         <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
                             <h1 style="font-family: bebas-neue; font-size: 70px;">Why use the System?</h1>
                             <ul>
-                                <li style="font-family: 'Open Sans'; font-size: 20px;">Medical Legacy Directory, provides a platform where an individual can make appointments, or keep track of appointments and also get updates about their treatment on one platform.</li>
-                                <li style="font-family: 'Open Sans'; font-size: 20px;">The Medical Legacy Directory also provides a platform  for doctors to keep track of their patient. Also, it acts as an online database of informations where Doctors can store their research and treatment details that can help others. A doctor can also put up information about any wrong procedure or combinations of medicine that’ll help other doctors from commiting simillar mistakes.</li>
+                                <li style="font-family: 'Open Sans'; font-size: 20px;">Central Health Hospital, provides a platform where an individual can make appointments, or keep track of appointments and also get updates about their treatment on one platform.</li>
+                                <li style="font-family: 'Open Sans'; font-size: 20px;">The Central Health Hospital also provides a platform  for doctors to keep track of their patient. Also, it acts as an online database of informations where Doctors can store their research and treatment details that can help others. A doctor can also put up information about any wrong procedure or combinations of medicine that’ll help other doctors from commiting simillar mistakes.</li>
                                 <li style="font-family: 'Open Sans'; font-size: 20px;">On the Hospital/Clinic’s side, the System helps the institution to track their patient’s health and also treatment. This will also enable the institution to make use of existing  medical data to speed up the treatment and remove the need of any Physical Records. The system will also allow Hospitals to store information and details of treatment of its’ patient for various use in the future.</li>
-                                <li style="font-family: 'Open Sans'; font-size: 20px;">The Medical Legacy Directory, also builds a platform for Researchers and Academics to store information abour their researches.</li>
+                                <li style="font-family: 'Open Sans'; font-size: 20px;">The Central Health Hospital, also builds a platform for Researchers and Academics to store information abour their researches.</li>
                             </ul>
                         </div>
                         <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12" style="transform: translateY(15%)">
-                            <center><img src="illustrations/drawkit-notebook-man-colour.svg" alt="doctor" style="width: 30vw; height: 30vw;  display: block;   margin-left: auto;  margin-right: auto;"></center>
+                            <center><img src="illustrations/doc3.jpg" alt="doctor3" style="width: 30vw; height: 30vw;  display: block;   margin-left: auto;  margin-right: auto;"></center>
                         </div> 
                     </div>
                 </div>

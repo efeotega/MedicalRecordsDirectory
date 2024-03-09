@@ -1,7 +1,5 @@
 <!DOCTYPE html>
-<!--
-Project by Tanmoy Sen Gupta | tanmoysps@gmail.com | www.tanmoysg.com
--->
+
 <?php
 include 'connection.php';
 session_start();
@@ -10,7 +8,7 @@ if (isset($_SESSION['logged_in'])) {
     $query = "SELECT * FROM users WHERE email ='$email'";
     $result = mysqli_query($db, $query);
     $row = mysqli_fetch_assoc($result);
-    $mln = $row['mln'];
+    $chhid = $row['chhid'];
     ?>
     <html>
         <head>
@@ -31,10 +29,10 @@ if (isset($_SESSION['logged_in'])) {
                 <div class="dashboard-navbar-options-light nav-title" style="width: 100%;">
                     <center>
                         <span>
-                            <a href="index.php" style="float: left; padding-left: 50px; color: black">Medical Legacy Directory</a>
+                            <a href="index.php" style="float: left; padding-left: 50px; color: black">Central Health Hospital</a>
                         </span>
                         <span style="float: right;">
-                            <a href="userHome.php" style="color:#252525"><i class="fas fa-home"></i></a>  
+                            <a href="patientHome.php" style="color:#252525"><i class="fas fa-home"></i></a>  
                             <a href="logout.php" style="color:#252525"><i class="fas fa-sign-out-alt" ></i></a>
                         </span> 
                     </center>
@@ -45,7 +43,7 @@ if (isset($_SESSION['logged_in'])) {
                 include 'connection.php';
 
                 //error_reporting(error_reporting() & ~E_NOTICE);
-                $query = "SELECT * FROM $mln ";
+                $query = "SELECT * FROM $chhid ";
                 $result = mysqli_query($db, $query);
 
                 while ($row = mysqli_fetch_assoc($result)) {
