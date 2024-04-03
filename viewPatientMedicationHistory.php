@@ -17,12 +17,17 @@ if (isset($_POST['email'])) {
 <html>
 
 <head>
+    <script>
+        function confirmLogout() {
+            return confirm("Are you sure you want to log out?");
+        }
+    </script>
     <meta charset="UTF-8">
     <title>HOME | CHH</title>
     <link rel="icon" href="favicon.ico" sizes="20x20" type="image/png">
-    <link rel="stylesheet" type="text/css" href="styling/dashboard.css">
-    <link rel="stylesheet" type="text/css" href="styling/flexboxgrid.css">
-    <link rel="stylesheet" type="text/css" href="styling/forms.css">
+    <link rel="stylesheet" type="text/css" href="css/dashboard.css">
+    <link rel="stylesheet" type="text/css" href="css/flexboxgrid.css">
+    <link rel="stylesheet" type="text/css" href="css/forms.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.0/css/all.css" crossorigin="anonymous">
     <link rel="stylesheet" href="https://use.typekit.net/sgr8dvc.css">
@@ -65,7 +70,8 @@ if (isset($_POST['email'])) {
                         Hospital</a>
                 </span>
                 <span style="float: right;">
-                    <a href="logout.php" style="color:#252525"><i class="fas fa-sign-out-alt"></i>Log Out</a>
+                    <a href="logout.php" onclick="return confirmLogout();" style="color:#252525"><i
+                            class="fas fa-sign-out-alt"></i>Log Out</a>
                 </span>
             </center>
         </div>
@@ -96,7 +102,7 @@ if (isset($_POST['email'])) {
     <?php
     if (isset($rows) && $rows >= 1) {
         echo "<table id='editableTable'>";
-        echo "<tr><th>ID</th><th>First Name</th><th>Last Name</th><th>Email</th><th>Illness</th><th>Symptom</th><th>Drugs</th></tr>";
+        echo "<tr><th>ID</th><th>First Name</th><th>Last Name</th><th>Email</th><th>Date Of Meeting</th><th>Time</th><th>Details</th><th>Drugs</th><th>Attendant Doctor</th><th>Doctor's Notes</th></tr>";
 
         while ($row = mysqli_fetch_assoc($results)) {
             echo "<tr>";
@@ -104,9 +110,12 @@ if (isset($_POST['email'])) {
             echo "<td class='editable' data-column='fname' contenteditable='false'>" . $row['fname'] . "</td>";
             echo "<td class='editable' data-column='lname' contenteditable='false'>" . $row['lname'] . "</td>";
             echo "<td class='editable' data-column='email' contenteditable='false'>" . $row['email'] . "</td>";
-            echo "<td class='editable' data-column='illness' contenteditable='true'>" . $row['illness'] . "</td>";
-            echo "<td class='editable' data-column='symptom' contenteditable='true'>" . $row['symptom'] . "</td>";
-            echo "<td class='editable' data-column='drugs' contenteditable='true'>" . $row['drugs'] . "</td>";
+            echo "<td class='editable' data-column='date' contenteditable='false'>" . $row['date'] . "</td>";
+            echo "<td class='editable' data-column='time' contenteditable='false'>" . $row['time'] . "</td>";
+            echo "<td class='editable' data-column='details' contenteditable='false'>" . $row['details'] . "</td>";
+            echo "<td class='editable' data-column='drugs' contenteditable='false'>" . $row['drugs'] . "</td>";
+            echo "<td class='editable' data-column='doctoremail' contenteditable='false'>" . $row['doctoremail'] . "</td>";
+            echo "<td class='editable' data-column='notes' contenteditable='false'>" . $row['notes'] . "</td>";
             echo "</tr>";
         }
 

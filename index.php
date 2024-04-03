@@ -4,9 +4,9 @@
         <meta charset="UTF-8">
         <title>Central Health Hospital</title>
         <link rel="icon" href="favicon.ico" sizes="20x20" type="image/png">  
-        <link rel="stylesheet" type="text/css" href="styling/dashboard.css">
-        <link rel="stylesheet" type="text/css" href="styling/flexboxgrid.css">
-        <link rel="stylesheet" type="text/css" href="styling/typography.css">
+        <link rel="stylesheet" type="text/css" href="css/dashboard.css">
+        <link rel="stylesheet" type="text/css" href="css/flexboxgrid.css">
+        <link rel="stylesheet" type="text/css" href="css/typography.css">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.0/css/all.css" crossorigin="anonymous">
         <link rel="stylesheet" href="https://use.typekit.net/sgr8dvc.css">
@@ -20,9 +20,16 @@
                     <span>
                         <a href="index.php" style="float: left; padding-left: 50px; color: black">Central Health Hospital</a>
                     </span>
-                   <span style="float: right;">
-                        <a href="login.php" style="color:#252525"><i class="fas fa-sign-in-alt"></i> Log In</a>  
-                    </span>  
+                    <span style="float: right;">
+                        <a href="login.php" style="float: left; padding-left: 50px; color: black">Log In</a>
+                    </span>
+                    <span style="float: right;">
+                        <a href="about.php" style="float: left; padding-left: 50px; color: black">About Us</a>
+                    </span>
+                    <span style="float: right;">
+                        <a href="contactpage.php" style="float: left; padding-left: 50px; color: black">Contact Us</a>
+                    </span>
+                      
                 </center>
             </div>
         </div>
@@ -31,9 +38,9 @@
                 <div class="content-section" >
                     <div class="row">
                         <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
-                            <span style="font-family: bebas-neue; font-size: 100px; line-height:80px; display: block; vertical-align: middle" class="hero-header-text">Medical Record Keeping<br>made easy!</span>
+                            <span style="font-family: bebas-neue; font-size: 100px; line-height:80px; display: block; vertical-align: middle" class="hero-header-text">Medical Record Keeping<br>Made Easy!</span>
                             <p style="font-family: Montserrat; font-size: 30px;">
-                                Our mission is to make Medical Records Keeping easy and efficient that will make treatment more efficient and fast. 
+                                Our mission is to make Medical Records Keeping easy and efficient that will make treatment more efficient. 
                             </p>
                             <div style="float: left;" class="row">
                                 <div style="border: solid 1px white; border-radius: 10px; padding: 10px; font-family: Montserrat; margin-right: 10px;"><a href="index.php#KnowMore" style="color: white;">Know More</a></div>
@@ -41,7 +48,7 @@
                             </div>
                         </div>
                         <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
-                            <img src="illustrations/doctor-colour.svg" alt="doctor1" style="width: 25vw; height: 25vw;  display: block;   margin-left: auto;  margin-right: auto;">
+                            <img src="illustrations/doctor-colour-400px.png" alt="doctor1" style="width: 25vw; height: 25vw;  display: block;   margin-left: auto;  margin-right: auto;">
                         </div> 
                     </div>
                 </div> 

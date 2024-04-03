@@ -2,12 +2,17 @@
 
 <html>
     <head>
+    <script>
+            function confirmLogout() {
+                return confirm("Are you sure you want to log out?");
+            }
+        </script>
         <meta charset="UTF-8">
         <title>Upload Reports</title>
         <link rel="icon" href="favicon.ico" sizes="20x20" type="image/png">  
-        <link rel="stylesheet" type="text/css" href="styling/dashboard.css">
-        <link rel="stylesheet" type="text/css" href="styling/flexboxgrid.css">
-        <link rel="stylesheet" type="text/css" href="styling/forms.css">
+        <link rel="stylesheet" type="text/css" href="css/dashboard.css">
+        <link rel="stylesheet" type="text/css" href="css/flexboxgrid.css">
+        <link rel="stylesheet" type="text/css" href="css/forms.css">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.0/css/all.css" crossorigin="anonymous">
         <link rel="stylesheet" href="https://use.typekit.net/sgr8dvc.css">
@@ -23,7 +28,7 @@
                     </span>
                     <span style="float: right;">
                         <a href="patientHome.php" style="color:#252525"><i class="fas fa-home"></i></a>  
-                        <a href="logout.php" style="color:#252525"><i class="fas fa-sign-out-alt" ></i></a>
+                        <a href="logout.php" onclick="return confirmLogout();" style="color:#252525"><i class="fas fa-sign-out-alt" ></i></a>
                     </span> 
                 </center>
             </div>

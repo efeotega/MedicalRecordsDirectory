@@ -5,9 +5,9 @@
     <meta charset="UTF-8">
     <title>Admin Login | CHH</title>
     <link rel="icon" href="favicon.ico" sizes="20x20" type="image/png">
-    <link rel="stylesheet" type="text/css" href="styling/dashboard.css">
-    <link rel="stylesheet" type="text/css" href="styling/flexboxgrid.css">
-    <link rel="stylesheet" type="text/css" href="styling/typography.css">
+    <link rel="stylesheet" type="text/css" href="css/dashboard.css">
+    <link rel="stylesheet" type="text/css" href="css/flexboxgrid.css">
+    <link rel="stylesheet" type="text/css" href="css/typography.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.0/css/all.css" crossorigin="anonymous">
     <link rel="stylesheet" href="https://use.typekit.net/sgr8dvc.css">
@@ -24,9 +24,9 @@
                     <a href="index.php" style="float: left; padding-left: 50px; color: black">
                         Central Health Hospital</a>
                 </span>
-                <span style="float: right;">
+                <!-- <span style="float: right;">
                     <a href="login.php" style="color:#252525"><i class="fas fa-sign-in-alt"></i></a>
-                </span>
+                </span> -->
             </center>
         </div>
     </div>

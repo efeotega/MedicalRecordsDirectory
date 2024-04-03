@@ -4,7 +4,7 @@
 include 'connection.php';
 session_start();
 $email = $_SESSION['email'];
-$query = "SELECT * FROM patientrecords WHERE doctoremail ='$email'";
+$query = "SELECT * FROM patientrecords WHERE email ='$email' AND doctoremail != ''";
 $results = mysqli_query($db, $query);
 $rows = mysqli_num_rows($results);
 ?>
@@ -17,7 +17,7 @@ $rows = mysqli_num_rows($results);
         }
     </script>
     <meta charset="UTF-8">
-    <title>Doctor Home | CHH</title>
+    <title>View Appointments | CHH</title>
     <link rel="icon" href="favicon.ico" sizes="20x20" type="image/png">
     <link rel="stylesheet" type="text/css" href="css/dashboard.css">
     <link rel="stylesheet" type="text/css" href="css/flexboxgrid.css">
@@ -71,7 +71,7 @@ $rows = mysqli_num_rows($results);
         </div>
     </div>
     <div class="col-lg-offset-4 col-lg-4 box" style="vertical-align: middle; padding: 20px">
-        <h1>Patients Assigned To You</h1>
+        <h1>Your Approved Appointments</h1>
 
     </div>
     <div id="responseMessage"></div>
@@ -86,16 +86,17 @@ $rows = mysqli_num_rows($results);
             echo "<td class='editable' data-column='fname' contenteditable='false'>" . $row['fname'] . "</td>";
             echo "<td class='editable' data-column='lname' contenteditable='false'>" . $row['lname'] . "</td>";
             echo "<td class='editable' data-column='email' contenteditable='false'>" . $row['email'] . "</td>";
-            echo "<td class='editable' data-column='time' contenteditable='true'>" . $row['time'] . "</td>";
+            echo "<td class='editable' data-column='time' contenteditable='false'>" . $row['time'] . "</td>";
 
             echo "<td class='editable' data-column='date' contenteditable='false'>" . $row['date'] . "</td>";
 
             echo "<td class='editable' data-column='details' contenteditable='false'>" . $row['details'] . "</td>";
-            echo "<td class='editable' data-column='drugs' contenteditable='true'>" . $row['drugs'] . "</td>";
 
-            echo "<td class='editable' data-column='notes' contenteditable='true'>" . $row['notes'] . "</td>";
-            echo "<td><button onclick='messageUser(this)' data-id='" . $row['id'] . "'>Message</button></td>";
+            echo "<td class='editable' data-column='drugs' contenteditable='false'>" . $row['drugs'] . "</td>";
 
+            echo "<td class='editable' data-column='notes' contenteditable='false'>" . $row['notes'] . "</td>";
+
+            echo "<td><button onclick='buyDrug(this)' data-id='" . $row['id'] . "' data-drug='" . $row['drugs'] . "' data-email='" . $row['email'] . "'>Buy Drug</button></td>";
             echo "</tr>";
         }
 
@@ -106,8 +107,33 @@ $rows = mysqli_num_rows($results);
     ?>
 
     <script>
-        function messageUser(button) {
-            window.location.href = "doctorMessagePage.php";
+        function buyDrug(button) {
+            try {
+                var drug = button.getAttribute('data-drug');
+                var patientemail = button.getAttribute('data-email');
+                var xhr = new XMLHttpRequest();
+                xhr.open("POST", "set_drug_session.php", true);
+                xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+                xhr.onreadystatechange = function () {
+                    if (xhr.readyState == 4 && xhr.status == 200) {
+                        // Handle the response from the server
+                        //alert(xhr.responseText); // Alert response from PHP script (optional)
+                    }
+                };
+
+                // Concatenate drug and patientemail values into the POST data
+                var postData = "drug=" + drug + "&patientemail=" + patientemail;
+                xhr.send(postData);
+
+                var phpPageUrl = "transferPage.php";
+
+                // Redirect to the PHP page
+                window.location.href = phpPageUrl;
+            }
+            catch (error) {
+                alert(error);
+            }
+
         }
 
         // JavaScript to handle saving changes to the database when Enter key is pressed

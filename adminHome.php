@@ -16,12 +16,17 @@ if (isset($_SESSION['admin_logged_in'])) {
     <html>
 
     <head>
+        <script>
+            function confirmLogout() {
+                return confirm("Are you sure you want to log out?");
+            }
+        </script>
         <meta charset="UTF-8">
         <title>HOME | CHH</title>
         <link rel="icon" href="favicon.ico" sizes="20x20" type="image/png">
-        <link rel="stylesheet" type="text/css" href="styling/dashboard.css">
-        <link rel="stylesheet" type="text/css" href="styling/flexboxgrid.css">
-        <link rel="stylesheet" type="text/css" href="styling/forms.css">
+        <link rel="stylesheet" type="text/css" href="css/dashboard.css">
+        <link rel="stylesheet" type="text/css" href="css/flexboxgrid.css">
+        <link rel="stylesheet" type="text/css" href="css/forms.css">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.0/css/all.css" crossorigin="anonymous">
         <link rel="stylesheet" href="https://use.typekit.net/sgr8dvc.css">
@@ -39,7 +44,8 @@ if (isset($_SESSION['admin_logged_in'])) {
                             Hospital</a>
                     </span>
                     <span style="float: right;">
-                        <a href="logout.php" style="color:#252525"><i class="fas fa-sign-out-alt"></i>Log Out</a>
+                        <a href="logout.php" onclick="return confirmLogout();" style="color:#252525"><i
+                                class="fas fa-sign-out-alt"></i>Log Out</a>
                     </span>
                 </center>
             </div>
@@ -78,8 +84,9 @@ if (isset($_SESSION['admin_logged_in'])) {
             </div>
         </div>
         <div class=row>
-            
-            <div class="col-lg-offset-1 col-lg-5 box" style="vertical-align: middle; padding: 50px; font-family: Varela Round ">
+
+            <div class="col-lg-offset-1 col-lg-5 box"
+                style="vertical-align: middle; padding: 50px; font-family: Varela Round ">
                 <h1 style="font-size: 50px; color: #00cf7a">View Patients</h1>
                 <a href="viewAllPatients.php" class="form-button-one" style="border-color: #00cf7a; color: #00cf7a"><i
                         class="fas fa-clipboard"></i> View Patients</a>
@@ -87,36 +94,35 @@ if (isset($_SESSION['admin_logged_in'])) {
             <div class="col-lg-5 box" style="vertical-align: middle; padding: 50px; font-family: Varela Round ">
                 <h1 style="font-size: 50px; color: #1e78ff">Assign Patients To Doctors</h1>
                 <a href="assignPatients.php" class="form-button-one" style="border-color: #1e78ff; color: #1e78ff"><i
-                        class="fas fa-clipboard"></i>Assign Patients To Doctors</a>
+                        class="fas fa-clipboard"></i> Assign Patients To Doctors</a>
             </div>
-            
-            <div class="col-lg-offset-1 col-lg-5 box" style="vertical-align: middle; padding: 50px; font-family: Varela Round ">
+
+            <div class="col-lg-offset-1 col-lg-5 box"
+                style="vertical-align: middle; padding: 50px; font-family: Varela Round ">
                 <h1 style="font-size: 50px; color: #00cf7a">View Admins</h1>
                 <a href="viewAllAdmins.php" class="form-button-one" style="border-color: #00cf7a; color: #00cf7a"><i
                         class="fas fa-clipboard"></i> View Admins</a>
             </div>
-            <div class="col-lg-5 box"
-                style="vertical-align: middle; padding: 50px; font-family: Varela Round ">
+            <div class="col-lg-5 box" style="vertical-align: middle; padding: 50px; font-family: Varela Round ">
                 <h1 style="font-size: 50px; color: #1e78ff">Add Admins</h1>
                 <a href="addAdmins.php" class="form-button-one" style="border-color: #1e78ff; color: #1e78ff"><i
                         class="fas fa-clipboard"></i> Add Admins</a>
             </div>
-            <div class="col-lg-offset-1 col-lg-5 box" style="vertical-align: middle; padding: 50px; font-family: Varela Round ">
+            <div class="col-lg-offset-1 col-lg-5 box"
+                style="vertical-align: middle; padding: 50px; font-family: Varela Round ">
                 <h1 style="font-size: 50px; color: #00cf7a">View Pharmacists</h1>
                 <a href="viewAllPharmacists.php" class="form-button-one" style="border-color: #00cf7a; color: #00cf7a"><i
                         class="fas fa-clipboard"></i> View Pharmacists</a>
             </div>
-        
-            <div class="col-lg-5 box"
-                style="vertical-align: middle; padding: 50px; font-family: Varela Round ">
+
+            <div class="col-lg-5 box" style="vertical-align: middle; padding: 50px; font-family: Varela Round ">
                 <h1 style="font-size: 50px; color: #1e78ff">Add Pharmacists</h1>
                 <a href="addPharmacists.php" class="form-button-one" style="border-color: #1e78ff; color: #1e78ff"><i
                         class="fas fa-clipboard"></i> Add Pharmacists</a>
             </div>
-            <div class="col-lg-offset-1 col-lg-5 box" style="vertical-align: middle; padding: 50px; font-family: Varela Round ">
-                <h1 style="font-size: 50px; color: #ffbd00 ">Records & Reports</h1>
-                <a href="displayReports.php" class="form-button-one" style="border-color: #00cf7a; color: #00cf7a"><i
-                        class="fas fa-file-medical"></i> View Reports</a>
+            <div class="col-lg-offset-1 col-lg-5 box"
+                style="vertical-align: middle; padding: 50px; font-family: Varela Round ">
+                <h1 style="font-size: 50px; color: #ffbd00 ">Financial Records</h1>
                 <a href="displayRecords.php" class="form-button-one" style="border-color: #1e78ff; color: #1e78ff"><i
                         class="fas fa-clipboard"></i> View Records</a>
             </div>

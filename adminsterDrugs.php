@@ -3,10 +3,16 @@
 <?php
 include 'connection.php';
 session_start();
-$email = $_SESSION['email'];
-$query = "SELECT * FROM patientrecords WHERE doctoremail ='$email'";
-$results = mysqli_query($db, $query);
-$rows = mysqli_num_rows($results);
+if (isset($_POST['email'])) {
+    $email = mysqli_real_escape_string($db, $_POST['email']);
+    if (empty($email)) {
+        $error = 'Email Field Required!';
+    } else {
+        $query = "SELECT * FROM patientrecords WHERE email='$email' AND drugs IS NOT NULL AND drugs <> ''";
+        $results = mysqli_query($db, $query);
+        $rows = mysqli_num_rows($results);
+    }
+}
 ?>
 <html>
 
@@ -17,7 +23,7 @@ $rows = mysqli_num_rows($results);
         }
     </script>
     <meta charset="UTF-8">
-    <title>Doctor Home | CHH</title>
+    <title>HOME | CHH</title>
     <link rel="icon" href="favicon.ico" sizes="20x20" type="image/png">
     <link rel="stylesheet" type="text/css" href="css/dashboard.css">
     <link rel="stylesheet" type="text/css" href="css/flexboxgrid.css">
@@ -71,14 +77,32 @@ $rows = mysqli_num_rows($results);
         </div>
     </div>
     <div class="col-lg-offset-4 col-lg-4 box" style="vertical-align: middle; padding: 20px">
-        <h1>Patients Assigned To You</h1>
+        <h1>Adminster Drugs</h1>
+        <form action="adminsterDrugs.php" method="POST">
+            <?php if (isset($error)) { ?>
+                <br>
+                <small style="font-size: 15px; font-family: 'Montserrat'; color: #aa0000;">
+                    <?php echo $error; ?>
+                </small><br>
+                <br>
+            <?php } ?>
+            <div class="row form-input-group">
+                <label style="text-align: left">Enter patients email</label><br><br>
+                <input placeholder="Email" type="email" name="email" class="input-box col-lg-12" autocomplete="off"
+                    required>
+            </div>
+            <br>
+            <br>
+            <button type="submit" name="submit" class="form-button-one"
+                style="background-color: #00cf7a; border-color:#00cf7a; color: white">Search</button>
+        </form>
 
     </div>
     <div id="responseMessage"></div>
     <?php
     if (isset($rows) && $rows >= 1) {
         echo "<table id='editableTable'>";
-        echo "<tr><th>ID</th><th>First Name</th><th>Last Name</th><th>Email</th><th>Time</th><th>Date</th><th>Details</th><th>Drugs</th><th>Doctor's Notes</th></tr>";
+        echo "<tr><th>ID</th><th>First Name</th><th>Last Name</th><th>Email</th><th>Illness</th><th>Symptom</th><th>Drugs</th></tr>";
 
         while ($row = mysqli_fetch_assoc($results)) {
             echo "<tr>";
@@ -86,16 +110,10 @@ $rows = mysqli_num_rows($results);
             echo "<td class='editable' data-column='fname' contenteditable='false'>" . $row['fname'] . "</td>";
             echo "<td class='editable' data-column='lname' contenteditable='false'>" . $row['lname'] . "</td>";
             echo "<td class='editable' data-column='email' contenteditable='false'>" . $row['email'] . "</td>";
-            echo "<td class='editable' data-column='time' contenteditable='true'>" . $row['time'] . "</td>";
-
-            echo "<td class='editable' data-column='date' contenteditable='false'>" . $row['date'] . "</td>";
-
-            echo "<td class='editable' data-column='details' contenteditable='false'>" . $row['details'] . "</td>";
-            echo "<td class='editable' data-column='drugs' contenteditable='true'>" . $row['drugs'] . "</td>";
-
-            echo "<td class='editable' data-column='notes' contenteditable='true'>" . $row['notes'] . "</td>";
-            echo "<td><button onclick='messageUser(this)' data-id='" . $row['id'] . "'>Message</button></td>";
-
+            echo "<td class='editable' data-column='illness' contenteditable='true'>" . $row['illness'] . "</td>";
+            echo "<td class='editable' data-column='symptom' contenteditable='false'>" . $row['symptom'] . "</td>";
+            echo "<td class='editable' data-column='drugs' contenteditable='false'>" . $row['drugs'] . "</td>";
+            echo "<td><button onclick='adminsterDrug(this)' data-id='" . $row['id'] . "' data-drug='" . $row['drugs'] . "' data-email='" . $row['email'] . "'>Administer</button></td>";
             echo "</tr>";
         }
 
@@ -106,34 +124,34 @@ $rows = mysqli_num_rows($results);
     ?>
 
     <script>
-        function messageUser(button) {
-            window.location.href = "doctorMessagePage.php";
-        }
-
-        // JavaScript to handle saving changes to the database when Enter key is pressed
-        document.getElementById('editableTable').addEventListener('keydown', function (e) {
-            if (e.key === 'Enter') {
-                let td = e.target;
-                let column = td.getAttribute('data-column'); // Retrieve column name from data-column attribute
-                let row = td.parentNode.rowIndex;
-                let cellValue = td.innerText;
-                let id = this.rows[row].cells[0].innerText; // Assuming the ID is in the first column
-
-                // Remove focus from the current cell
-                td.blur();
-
-                // Send an AJAX request to update the database
-                let xhr = new XMLHttpRequest();
-                xhr.open('POST', 'updatePatientRecord.php', true);
-                xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+        function adminsterDrug(button) {
+            try {
+                var drug = button.getAttribute('data-drug');
+                var patientemail = button.getAttribute('data-email');
+                var xhr = new XMLHttpRequest();
+                xhr.open("POST", "set_drug_session.php", true);
+                xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
                 xhr.onreadystatechange = function () {
                     if (xhr.readyState == 4 && xhr.status == 200) {
-                        document.getElementById('responseMessage').innerHTML = xhr.responseText; // Display response message on the screen
+                        // Handle the response from the server
+                        //alert(xhr.responseText); // Alert response from PHP script (optional)
                     }
-                }
-                xhr.send('id=' + id + '&column=' + column + '&value=' + encodeURIComponent(cellValue));
+                };
+
+                // Concatenate drug and patientemail values into the POST data
+                var postData = "drug=" + drug + "&patientemail=" + patientemail;
+                xhr.send(postData);
+
+                var phpPageUrl = "paymentPage.php";
+
+                // Redirect to the PHP page
+                window.location.href = phpPageUrl;
             }
-        });
+            catch (error) {
+                alert(error);
+            }
+
+        }
     </script>
 
 </body>

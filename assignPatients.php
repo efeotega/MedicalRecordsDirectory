@@ -4,7 +4,7 @@
 include 'connection.php';
 session_start();
 
-$query = "SELECT * FROM pharmacists";
+$query = "SELECT * FROM patientrecords WHERE doctoremail=''";
 $results = mysqli_query($db, $query);
 $rows = mysqli_num_rows($results);
 
@@ -18,7 +18,7 @@ $rows = mysqli_num_rows($results);
             }
         </script>
     <meta charset="UTF-8">
-    <title>HOME | CHH</title>
+    <title>ASSIGN PATIENTS | CHH</title>
     <link rel="icon" href="favicon.ico" sizes="20x20" type="image/png">
     <link rel="stylesheet" type="text/css" href="css/dashboard.css">
     <link rel="stylesheet" type="text/css" href="css/flexboxgrid.css">
@@ -70,12 +70,12 @@ $rows = mysqli_num_rows($results);
             </center>
         </div>
     </div>
-    <h1>All Pharmacists</h1>
+    <h1>All Unassigned Records</h1>
     <div id="responseMessage"></div>
     <?php
     if (isset($rows) && $rows >= 1) {
         echo "<table id='editableTable'>";
-        echo "<tr><th>ID</th><th>First Name</th><th>Last Name</th><th>Email</th></tr>";
+        echo "<tr><th>ID</th><th>First Name</th><th>Last Name</th><th>Email</th><th>Date</th><th>Time</th><th>Details</th><th>Assign To (Doctor Email)</th></tr>";
 
         while ($row = mysqli_fetch_assoc($results)) {
             echo "<tr>";
@@ -83,7 +83,10 @@ $rows = mysqli_num_rows($results);
             echo "<td class='editable' data-column='fname' contenteditable='false'>" . $row['fname'] . "</td>";
             echo "<td class='editable' data-column='lname' contenteditable='false'>" . $row['lname'] . "</td>";
             echo "<td class='editable' data-column='email' contenteditable='false'>" . $row['email'] . "</td>";
-            echo "<td><button onclick='deleteRow(this)' data-id='" . $row['id'] . "'>Delete</button></td>";
+            echo "<td class='editable' data-column='date' contenteditable='true'>" . $row['date'] . "</td>";
+            echo "<td class='editable' data-column='time' contenteditable='true'>" . $row['time'] . "</td>";
+            echo "<td class='editable' data-column='details' contenteditable='false'>" . $row['details'] . "</td>";
+            echo "<td class='editable' data-column='doctoremail' contenteditable='true' placeholder='Enter doctor email'></td>";
             echo "</tr>";
         }
 
@@ -93,27 +96,31 @@ $rows = mysqli_num_rows($results);
     }
     ?>
 
-    <script>
-        function deleteRow(button) {
-            if (confirm("Are you sure you want to delete this row?")) {
-                let row = button.parentNode.parentNode;
-                let id = row.cells[0].innerText; // Assuming the ID is in the first column
+<script>
+        // JavaScript to handle saving changes to the database when Enter key is pressed
+        document.getElementById('editableTable').addEventListener('keydown', function (e) {
+            if (e.key === 'Enter') {
+                let td = e.target;
+                let column = td.getAttribute('data-column'); // Retrieve column name from data-column attribute
+                let row = td.parentNode.rowIndex;
+                let cellValue = td.innerText;
+                let id = this.rows[row].cells[0].innerText; // Assuming the ID is in the first column
 
-                // Send an AJAX request to delete the row from the database
+                // Remove focus from the current cell
+                td.blur();
+
+                // Send an AJAX request to update the database
                 let xhr = new XMLHttpRequest();
-                xhr.open('POST', 'deletePharmacists.php', true);
+                xhr.open('POST', 'updatePatientRecord.php', true);
                 xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
                 xhr.onreadystatechange = function () {
                     if (xhr.readyState == 4 && xhr.status == 200) {
                         document.getElementById('responseMessage').innerHTML = xhr.responseText; // Display response message on the screen
-                        if (xhr.responseText.includes("successfully")) {
-                            row.parentNode.removeChild(row); // Remove the row from the table if deletion was successful
-                        }
                     }
                 }
-                xhr.send('id=' + id);
+                xhr.send('id=' + id + '&column=' + column + '&value=' + encodeURIComponent(cellValue));
             }
-        }
+        });
     </script>
 </body>
 
